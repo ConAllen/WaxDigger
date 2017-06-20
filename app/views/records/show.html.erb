@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @record.Title %>
+</p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @record.Label %>
+</p>
+
+<p>
+  <strong>Format:</strong>
+  <%= @record.Format %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @record.Country %>
+</p>
+
+<p>
+  <strong>Released:</strong>
+  <%= @record.Released %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @record.Genre %>
+</p>
+
+<p>
+  <strong>Tracklist:</strong>
+  <%= @record.Tracklist %>
+</p>
+
+<p>
+  <strong>Condition:</strong>
+  <%= @record.Condition %>
+</p>
+
+<p>
+  <strong>Original price:</strong>
+  <%= @record.Original_Price %>
+</p>
+
+<p>
+  <strong>Selling price:</strong>
+  <%= @record.Selling_Price %>
+</p>
+
+<%= link_to 'Edit', edit_record_path(@record) %> |
+<%= link_to 'Back', records_path %>
