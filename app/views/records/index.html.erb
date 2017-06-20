@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Image</th>
       <th>Title</th>
       <th>Label</th>
       <th>Format</th>
@@ -22,6 +23,8 @@
   <tbody>
     <% @records.each do |record| %>
       <tr>
+        <%# the ruby code below displays the paperclip image %>
+        <td><%= image_tag record.image.url(:medium) %></td>
         <td><%= record.Title %></td>
         <td><%= record.Label %></td>
         <td><%= record.Format %></td>

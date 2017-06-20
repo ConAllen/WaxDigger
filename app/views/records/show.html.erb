@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<!-- the below line of code enables the image to be displayed via paperclip -->
+<%= image_tag @record.image.url(:medium) %>
+
 <p>
   <strong>Title:</strong>
   <%= @record.Title %>
@@ -50,5 +53,5 @@
   <%= @record.Selling_Price %>
 </p>
 
-<%= link_to 'Edit', edit_record_path(@record) %> |
-<%= link_to 'Back', records_path %>
+<%= link_to 'Edit', edit_record_path(@record),class: "btn btn-link" %> |
+<%= link_to 'Back', records_path, class: "btn btn-link" %>
