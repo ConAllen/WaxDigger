@@ -1,1 +1,36 @@
 @import "bootstrap";
+
+//the below is code for the style display of my home page
+body{
+  background-color:#F5F5F1;
+  font-family:monospace;
+}
+
+.navbar-default{
+ background-color: #2c495b;
+
+}
+// the below code effects just my navbar logo
+.navbar-default .navbar-brand{
+font-family:georgia, serif;
+font-weight: 400;
+color:white;
+font-size: 30px;
+
+}
+
+/*
+  the below code effects all elements of the nav bar classes.
+  This style effects links contained in my navbar.
+  */
+
+.navbar-default .navbar-nav > li > a {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: #0192B5;
+}
+//this css class makes sure the record listings get pushed to the left once created
+.col-md-3:nth-child(4n+1){
+  clear:left;
+}
