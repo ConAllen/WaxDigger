@@ -15,14 +15,23 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
-      <li><a href="/pages/about">About <span class="sr-only">(current)</span></a></li>
-      <li><a href="/pages/contact">Contact</a></li>
-
-    </ul>
-
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Link</a></li>
-
+<%#The below is ruby code simular to a html link. it will link me to the essential
+links such as about contact / sign in / sign out using ruby syntax %>
+    <li><%= link_to "About", pages_about_path %></li>
+    <li><%= link_to "Contact",pages_contact_path %></li>
+  </ul>
+   <ul class="nav navbar-nav navbar-right">
+<%#The below code was taken from the devise web page. it is a ruby if else statement
+to show what link a user will see if they are signed in or signed out%>
+     <% if user_signed_in? %>
+     <%#when ever you are making a sign out link you always must remember to add
+     a method: :delete  %>
+     <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+     <li><%= link_to "Edit Profile",edit_user_registration_path %></li>
+    <% else %>
+    <li><%= link_to "Sign Up",new_user_registration_path %></li>
+    <li><%= link_to "Sign In",new_user_session_path %></li>
+    <% end %>
     </ul>
   </div><!-- /.navbar-collapse -->
 </div><!-- /.container-fluid -->
