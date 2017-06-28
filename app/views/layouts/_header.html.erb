@@ -26,8 +26,9 @@ to show what link a user will see if they are signed in or signed out%>
      <% if user_signed_in? %>
      <%#when ever you are making a sign out link you always must remember to add
      a method: :delete  %>
-     <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
      <li><%= link_to "Edit Profile",edit_user_registration_path %></li>
+     <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+
     <% else %>
     <li><%= link_to "Sign Up",new_user_registration_path %></li>
     <li><%= link_to "Sign In",new_user_session_path %></li>
