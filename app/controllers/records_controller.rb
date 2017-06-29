@@ -1,6 +1,6 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :update, :destroy]
-  
+
 
   # GET /records
   # GET /records.json
@@ -26,6 +26,8 @@ class RecordsController < ApplicationController
   # POST /records.json
   def create
     @record = Record.new(record_params)
+#the below code tells rails that the new record user id is equal to the current user. it adds association
+    @record.user_id = current_user.id
 
     respond_to do |format|
       if @record.save

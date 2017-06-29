@@ -8,4 +8,7 @@ class Record < ActiveRecord::Base
   validates :Selling_Price, numericality: { greater_than: 0, less_than: 50}
 #validates image are present
   validates :image, attachment_presence: true
+
+#the below code links a record to a user.
+  belongs_to :user
 end

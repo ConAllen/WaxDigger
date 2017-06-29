@@ -13,6 +13,8 @@
             <%= record.Format %><br>
             <%= record.Condition %><br>
             <%= record.Selling_Price %><br>
+            <%#the below code allows your name to be attached with the record %>
+            <%= "Seller : #{record.user.name}" %><br>
             <%= link_to 'Show', record, class: "btn btn-link" %>
             <%= link_to 'Edit', edit_record_path(record), class: "btn btn-link" %>
             <%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %>
