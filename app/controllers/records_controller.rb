@@ -1,6 +1,8 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :update, :destroy]
-
+#the code below is a devise filter so that only authenticated users can create, edit, update or destroy a listing.
+  before_action :authenticate_user!, only:[:new, :create, :edit, :update,:destroy]
+  before_action :check_user, only:[:edit, :update, :destroy]
 
   # GET /records
   # GET /records.json
@@ -73,5 +75,12 @@ class RecordsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def record_params
       params.require(:record).permit(:Title, :Label, :Format, :Country, :Released, :Genre, :Tracklist, :Condition, :Original_Price, :Selling_Price, :image)
+    end
+
+#the below method checks if the record belongs to the current user. If they try delete or edit the record listing. It redirects them to an alert message.
+  def check_user
+      if current_user != @record.user
+        redirect_to root_url, alert: "Sorry, this Record belongs to someone else"
+      end
     end
 end

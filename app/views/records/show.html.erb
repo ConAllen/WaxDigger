@@ -30,5 +30,8 @@ simular to the index page. This time i just used two colums -->
       <%= @record.Selling_Price %><br><br>
 </div>
 </div>
-<%= link_to 'Edit', edit_record_path(@record),class: "btn btn-link" %> |
-<%= link_to 'Back', records_path, class: "btn btn-link" %>
+<%# like the index page i added user permissions so only the signed in user can edit a listing%>
+<% if current_user == @record.user %>
+  <%= link_to 'Edit', edit_record_path(@record),class: "btn btn-info" %> |
+  <% end %>
+<%= link_to 'Back', records_path, class: "btn btn-warning" %> <br><br>
