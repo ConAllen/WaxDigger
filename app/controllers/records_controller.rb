@@ -6,8 +6,8 @@ class RecordsController < ApplicationController
 
 #the below method was set up for a seller action.so when a user wants to go to the seller page. they only see their records.
 #the records are then ordered by latest uploads
-  def seller
-    @records = Record.where(user: current_user).order("created_at DESC")
+ def seller
+  @records = Record.where(user: current_user).order("created_at DESC")
   end
 
   # GET /records
@@ -85,8 +85,8 @@ class RecordsController < ApplicationController
 
 #the below method checks if the record belongs to the current user. If they try delete or edit the record listing. It redirects them to an alert message.
   def check_user
-      if current_user != @record.user
-        redirect_to root_url, alert: "Sorry, this Record belongs to someone else"
-      end
-    end
+     if current_user != @record.user
+       redirect_to root_url, alert: "Sorry, this Record belongs to someone else"
+     end
+   end
 end

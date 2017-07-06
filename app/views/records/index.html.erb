@@ -22,6 +22,7 @@ record listing page%>
             <%= "Price : #{record.Selling_Price }"%><br>
             <%#the below code allows your name to be attached with the record %>
             <%= "Seller : #{record.user.name}" %><br>
+            
           </div>
         </div>
       </div>
@@ -31,5 +32,6 @@ record listing page%>
 
   <%#the below code allows you to only be allowed to create a listing if you are signed into the application %>
 <% if (user_signed_in?)%>
+
 <%= link_to 'New Record', new_record_path, class: "btn btn-success" %> <br>
 <% end %>
