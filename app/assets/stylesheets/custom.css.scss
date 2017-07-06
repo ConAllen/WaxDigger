@@ -34,3 +34,21 @@ font-size: 30px;
 .col-md-3:nth-child(4n+1){
   clear:left;
 }
+
+.jumbotron{
+  // background-color:#508bc9;
+
+  // background-image: url("jumbotron.jpg");
+  background-image: url("jumbotron1.jpg");
+
+  h1{
+  color: white;
+    font:bold;
+  }
+h3{
+  color:white;
+}
+border-style: solid;
+border-width: 2px;
+
+}

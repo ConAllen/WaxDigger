@@ -1,4 +1,8 @@
-<table>
+<%# the below is my seller page. I have created a HTML table to display the content
+    which will make it different to the home page.%>
+
+
+  <table class="table table-bordered table-hover table-striped">
   <tr>
     <th>Image</th>
     <th>Title</th>
@@ -18,44 +22,23 @@
       <td><%= record.Condition %></td>
       <td><%= record.Selling_Price %> </td>
       <td>
-        <%= link_to 'show', record , class: "btn btn-link"%>
-        <%= link_to 'Edit', edit_record_path(record), class: "btn btn-link" %>
-        <%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Dropdown
+            <span class="caret"></span>
+          </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a><%= link_to 'show', record , class: "btn btn-link"%> </a></li>
+    <li><a><%= link_to 'Edit', edit_record_path(record), class: "btn btn-link" %> </a></li>
+    <li><a><%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %> </a></li>
+  </ul>
+</div>
 
       </td>
     </tr>
 <%end%>
 </table>
 
-
-<div class="row">
-  <%# the ruby code below loops through the record listings properties. and displays it in a
-  bootstrap thumb nail / grid system. there should be 4 records accross using "col-md-3"%>
-  <% @records.each do |record| %>
-    <div class="col-md-3">
-      <div class="thumbnail">
-<%#the below code is a combination of the below links. when i click on the image it will redirect me to the
-record listing page%>
-        <%= link_to image_tag(record.image.url), record %>
-          <div class="caption">
-            <h3><%= record.Title %><br></h3>
-            <%= "Label : #{record.Label }"%><br>
-            <%= "Record Format: #{record.Format}" %><br>
-            <%= "Condition : #{record.Condition}"%><br>
-            <%= "Price : #{record.Selling_Price }"%><br>
-            <%#the below code allows your name to be attached with the record %>
-            <%= "Seller : #{record.user.name}" %><br>
-            <%#the below if statement means that if a user is signed in and a record belongs to the current user allow them to edit and delete their record listing %>
-            <% if(user_signed_in?) && (current_user == record.user)%>
-              <%= link_to 'Edit', edit_record_path(record), class: "btn btn-link" %>
-              <%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-    <% end %>
-</div>
 
   <%#the below code allows you to only be allowed to create a listing if you are signed into the application %>
 <% if (user_signed_in?)%>
