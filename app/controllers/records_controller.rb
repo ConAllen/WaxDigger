@@ -1,13 +1,19 @@
 class RecordsController < ApplicationController
   before_action :set_record, only: [:show, :edit, :update, :destroy]
 #the code below is a devise filter so that only authenticated users can create, edit, update or destroy a listing.
-  before_action :authenticate_user!, only:[:new, :create, :edit, :update,:destroy]
+  before_action :authenticate_user!, only:[:seller, :new, :create, :edit, :update,:destroy]
   before_action :check_user, only:[:edit, :update, :destroy]
+
+#the below method was set up for a seller action.so when a user wants to go to the seller page. they only see their records.
+#the records are then ordered by latest uploads
+  def seller
+    @records = Record.where(user: current_user).order("created_at DESC")
+  end
 
   # GET /records
   # GET /records.json
   def index
-    @records = Record.all
+    @records = Record.all.order("created_at DESC")
   end
 
   # GET /records/1

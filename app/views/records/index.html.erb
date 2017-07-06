@@ -17,11 +17,6 @@ record listing page%>
             <%= "Price : #{record.Selling_Price }"%><br>
             <%#the below code allows your name to be attached with the record %>
             <%= "Seller : #{record.user.name}" %><br>
-            <%#the below if statement means that if a user is signed in and a record belongs to the current user allow them to edit and delete their record listing %>
-            <% if(user_signed_in?) && (current_user == record.user)%>
-              <%= link_to 'Edit', edit_record_path(record), class: "btn btn-link" %>
-              <%= link_to 'Destroy', record, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %>
-            <% end %>
           </div>
         </div>
       </div>

@@ -24,6 +24,8 @@ links such as about contact / sign in / sign out using ruby syntax %>
 <%#The below code was taken from the devise web page. it is a ruby if else statement
 to show what link a user will see if they are signed in or signed out%>
      <% if user_signed_in? %>
+
+    <li><%= link_to "Manage Records", seller_path %></li>
      <%#when ever you are making a sign out link you always must remember to add
      a method: :delete  %>
      <li><%= link_to "Edit Profile",edit_user_registration_path %></li>
