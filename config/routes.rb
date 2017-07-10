@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :records
+#this tells rails it needs to include the listing id number in the url in the order page
+  resources :records do
+      resources :orders
+    end
+
   get 'pages/about'
   get 'pages/contact'
 

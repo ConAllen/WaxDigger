@@ -11,4 +11,6 @@ class Record < ActiveRecord::Base
 
 #the below code links a record to a user.
   belongs_to :user
+  # each record can have many orders
+  has_many :orders
 end

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @order.address %>
+</p>
+
+<p>
+  <strong>Town or city:</strong>
+  <%= @order.town_or_city %>
+</p>
+
+<p>
+  <strong>State or county:</strong>
+  <%= @order.state_or_county %>
+</p>
+
+<p>
+  <strong>Post or zip code:</strong>
+  <%= @order.post_or_zip_code %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @order.country %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>
