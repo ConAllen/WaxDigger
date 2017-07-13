@@ -13,4 +13,8 @@ class Record < ActiveRecord::Base
   belongs_to :user
   # each record can have many orders
   has_many :orders
+
+  def max_price
+    (self.Original_Price / 100) * 150 if self.Original_Price
+  end
 end

@@ -25,11 +25,23 @@ links such as about contact / sign in / sign out using ruby syntax %>
 to show what link a user will see if they are signed in or signed out%>
      <% if user_signed_in? %>
 
-    <li><%= link_to "Manage Records", seller_path %></li>
-     <%#when ever you are making a sign out link you always must remember to add
-     a method: :delete  %>
-     <li><%= link_to "Edit Profile",edit_user_registration_path %></li>
-     <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+     <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account Settings<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <%# the below link routes the manage listing tab to the seller page%>
+                    <li><%= link_to "Sales History", sales_path %></li>
+                    <li><%= link_to "Purchase History", purchases_path %></li>
+                </li>
+              </ul>
+              <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%# the next tag brings in the users name%>
+                          <%=current_user.name%><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><%= link_to "Manage Listing's",seller_path %></li>
+                          <li><%= link_to "Edit Profile",edit_user_registration_path %></li>
+                          <li><%= link_to "Sign Out",destroy_user_session_path, method: :delete %></li>
+                      </li>
+                    </ul>
 
     <% else %>
     <li><%= link_to "Sign Up",new_user_registration_path %></li>

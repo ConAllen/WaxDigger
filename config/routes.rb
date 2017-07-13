@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   get 'pages/about'
   get 'pages/contact'
 
+#the below root is setting up the previous order sales url localhost:3000/sales
+  get 'sales' => "orders#sales"
+#the below root is setting up the order purchases url localhost:3000/purchases
+  get 'purchases' => "orders#purchases"
+
 # the below line of code is setting up a new URL localhost/seller. which is catorized by records
   get 'seller' => "records#seller"
 

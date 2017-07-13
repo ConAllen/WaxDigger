@@ -3,6 +3,20 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   # GET /orders
   # GET /orders.json
+
+#the below link sets up the sales controler. it states the current user is the seller and posts the sales in order of latest sale
+def sales
+   @orders = Order.all.where(seller: current_user).order("created_at DESC")
+ end
+#the below link sets up the purchase controler. it states the current user is the buyer and posts the purchases in order of latest sale
+def purchases
+  @orders = Order.all.where(buyer: current_user).order("created_at DESC")
+end
+
+def purchases
+  @orders = Order.all.where(buyer: current_user).order("created_at DESC")
+end
+
   def index
     @orders = Order.all
   end
@@ -37,7 +51,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to root_url, notice: 'Order was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Thanks for your order' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }

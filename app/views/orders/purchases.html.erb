@@ -1,0 +1,36 @@
+<%# the below is my purchase page. I have created a HTML table to display the content
+    which will make it different to the home page.%>
+<h1> Your purchase history page </h1>
+
+  <table class="table table-bordered table-hover table-striped">
+  <tr>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Label</th>
+    <th>Condition</th>
+    <th>Seller</th>
+    <th>Price</th>
+    <th>Date purchased</th>
+  </tr>
+
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= image_tag order.record.image.url(:thumb)%></td>
+      <td><%= order.record.Title %></td>
+      <td><%= order.record.Label %></td><br>
+      <td><%= order.record.Condition %></td>
+      <td><%= order.seller.name %></td>
+      <td><%= order.record.Selling_Price %> </td>
+      <%#THE BELOW CODE IS FOR RUBY DATE. FOUND ON rubydoc%>
+       <td><%= order.created_at.strftime("%-d %B, %Y") %></td>
+       <td>
+
+    </tr>
+<%end%>
+</table>
+
+
+  <%#the below code allows you to only be allowed to create a listing if you are signed into the application %>
+<% if (user_signed_in?)%>
+<%= link_to 'New Record', new_record_path, class: "btn btn-success" %> <br>
+<% end %>

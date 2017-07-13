@@ -38,14 +38,20 @@ class RecordsController < ApplicationController
     @record.user_id = current_user.id
 
     respond_to do |format|
-      if @record.save
+      if check_max_price && @record.save
         format.html { redirect_to @record, notice: 'Record was successfully created.' }
         format.json { render :show, status: :created, location: @record }
+        flash[:notice] = "Successfully created..."
       else
         format.html { render :new }
         format.json { render json: @record.errors, status: :unprocessable_entity }
+        flash[:notice] = "There was a problem, the record must be less then a 50% surcharge of origial price"
       end
     end
+  end
+
+  def check_max_price
+    return true if @record.Selling_Price < @record.max_price
   end
 
   # PATCH/PUT /records/1

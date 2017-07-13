@@ -1,6 +1,6 @@
 
 <div class="jumbotron">
-<h1><span style="background-color: #a18bbc">Welcome to WaxDigger</span></h1>
+<h1><span style="background-color: #cfa5e3">Welcome to WaxDigger</span></h1>
 <h3><span style="background-color: #78ebd1">Irelands first online record store.</span></h3>
 
 
@@ -22,13 +22,14 @@ record listing page%>
             <%= "Price : #{record.Selling_Price }"%><br>
             <%#the below code allows your name to be attached with the record %>
             <%= "Seller : #{record.user.name}" %><br>
-            
+
           </div>
         </div>
       </div>
 
     <% end %>
 </div>
+
 
   <%#the below code allows you to only be allowed to create a listing if you are signed into the application %>
 <% if (user_signed_in?)%>
