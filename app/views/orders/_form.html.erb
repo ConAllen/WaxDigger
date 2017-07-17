@@ -1,43 +1,82 @@
-<%# the below code tells rails that a listing is a listing and an order is an order. The routes have been also set up%>
-    <%= form_for([@record,@order]) do |f| %>
-      <% if @order.errors.any? %>
-      <div id="error_explanation" class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
+<div class="row">
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <%= image_tag @record.image.url %>
+    </div>
+    <h3><%= @record.Title %></h3>
+    <h4><%= @record.Selling_Price %></h4>
+  </div>
+    <div class="col-md-8">
+    <%# the below code tells rails that a listing is a listing and an order is an order. The routes have been also set up%>
+        <%= form_for([@record,@order]) do |f| %>
+          <% if @order.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h4>
 
-          <ul>
-          <% @order.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
+              <ul>
+              <% @order.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
           <% end %>
-          </ul>
-        </div>
-      <% end %>
-  <div class="field">
-    <%= f.label :address %>
-    <%= f.text_field :address, class: "form-control" %>
-  </div>
 
- <div class="form-group">
-    <%= f.label :town_or_city %>
-    <%= f.text_field :town_or_city, class: "form-control" %>
-  </div>
+      <div class="field">
+        <%= f.label :address %>
+        <%= f.text_field :address, class: "form-control" %>
+      </div>
 
- <div class="form-group">
-    <%= f.label :state_or_county %>
-    <%= f.text_field :state_or_county, class: "form-control" %>
-  </div>
+     <div class="form-group">
+        <%= f.label :town_or_city %>
+        <%= f.text_field :town_or_city, class: "form-control" %>
+      </div>
 
- <div class="form-group">
-    <%= f.label :post_or_zip_code %>
-    <%= f.text_field :post_or_zip_code, class: "form-control" %>
-  </div>
+     <div class="form-group">
+        <%= f.label :state_or_county %>
+        <%= f.text_field :state_or_county, class: "form-control" %>
+      </div>
 
- <div class="form-group">
-    <%= f.label :country %>
-    <%= f.text_field :country, class: "form-control" %>
-  </div>
+     <div class="form-group">
+        <%= f.label :post_or_zip_code %>
+        <%= f.text_field :post_or_zip_code, class: "form-control" %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit class:"btn btn-primary" %>
-  </div>
-<% end %>
+     <div class="form-group">
+        <%= f.label :country %>
+        <%= f.text_field :country, class: "form-control" %>
+      </div>
+
+      <%#the below code is set up for the stripe creditcard field%>
+
+      <%# the below code is for stripe form. the user enters their bank acc details%>
+      <div class="form-group">
+           <div class="row">
+             <div class="col-md-8">
+               <%= label_tag :card_number, "Credit Card Number" %>
+               <%= text_field_tag :card_number, nil, { :name => nil, :'data-stripe' => "number", class: "form-control" } %>
+             </div>
+             <div class="col-md-4">
+               <%= label_tag :card_code, "CVC" %>
+               <%= text_field_tag :card_code, nil, { :name => nil, :'data-stripe' => "cvc", class: "form-control" } %>
+             </div>
+           </div>
+         </div>
+         <div class="form-group">
+           <%= label_tag nil, "Expiration Date" %>
+           <div class="row">
+             <div class="col-md-3">
+               <%= select_month nil, { use_two_digit_numbers: true }, { :name => nil, :'data-stripe' => "exp-month", class: "form-control" } %>
+             </div>
+             <div class="col-md-3">
+               <%= select_year nil, { start_year: Date.today.year, end_year: Date.today.year+10 }, { :name => nil, :'data-stripe' => "exp-year", class: "form-control" } %>
+             </div>
+           </div>
+         </div>
+
+         <div class="actions">
+       <%= f.submit "complete order", class: "btn btn-success"%>
+     </div>
+   <% end %>
+   </div>
+   <%= link_to 'Back', records_path, class:"btn btn-link" %>
