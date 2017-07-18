@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://code.stripe.com'
 
 
 git_source(:github) do |repo_name|
@@ -21,6 +22,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem "paperclip", "~> 5.0.0"
 # paperclip gem
+
+gem "figaro"
 
 gem 'devise'
 

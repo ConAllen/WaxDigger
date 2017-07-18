@@ -40,9 +40,27 @@ end
     @order.buyer_id = current_user.id
     @order.seller_id = @seller.id
 
+    #this first line tells stripe the secret key i added earlier from the stripe site and tells what acc to charge
+  Stripe.api_key = "sk_test_is7jrOAYtaRmMAAwopVfVpd0"
+  token = params[:stripeToken]
+begin
+  charge = Stripe::Charge.create(
+  :amount => (@record.Selling_Price),
+  :currency => "eur",
+  :source => token,
+)
+end
+
+#this code is available on the stripe API page for charging accounts.
+# this line means that amount is equal to the records price, turned into cents and floored to an integer
+# the currency will be in euro
+# the card will be the form token
+
+
+
     respond_to do |format|
       if @order.save
-        format.html { redirect_to root_url, notice: 'Thanks for your order' }
+        format.html { redirect_to root_url, notice: "Thank's for your order with WaxDigger, Come back soon!"}
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -53,7 +71,7 @@ end
 
 
 
- 
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

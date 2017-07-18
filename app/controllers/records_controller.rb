@@ -49,7 +49,7 @@ class RecordsController < ApplicationController
       end
     end
   end
-
+#the below method was created to put a limit on the price a user can add to a records selling price.
   def check_max_price
     return true if @record.Selling_Price < @record.max_price
   end

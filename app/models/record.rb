@@ -13,7 +13,7 @@ class Record < ActiveRecord::Base
   belongs_to :user
   # each record can have many orders
   has_many :orders
-
+#the below method states that the max_price can only be increased by 50% of its original selling price.
   def max_price
     (self.Original_Price / 100) * 150 if self.Original_Price
   end
