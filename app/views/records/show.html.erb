@@ -29,7 +29,7 @@ simular to the index page. This time i just used two colums -->
     <strong>Selling price:</strong>
       <%= @record.Selling_Price %><br><br>
       <br>
-      <%= link_to "Buy it now", new_record_order_path(@record), class:"btn btn-primary"%>
+      <%= link_to "Buy it now", new_record_order_path(@record), class:"btn btn-primary", data: {no_turbolink: true}%>
 </div>
 </div>
 <%# like the index page i added user permissions so only the signed in user can edit a listing%>
