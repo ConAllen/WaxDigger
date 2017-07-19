@@ -41,25 +41,36 @@ end
     @order.seller_id = @seller.id
 
     #this first line tells stripe the secret key i added earlier from the stripe site and tells what acc to charge
+    #this first line tells stripe the secret key i added earlier from the stripe site and tells what acc to charge
+        Stripe.api_key = ENV["STRIPE_API_KEY"]
+    # looks in the submitted form data. then pulls out the token stipe has given us, and hides it in the token.
+        token = params[:stripeToken]
+
+    #this code is available on the stripe API page for charging accounts
+        begin
+          charge = Stripe::Charge.create(
+            :amount => (@record.Selling_Price * 100).floor,
+            :currency => "eur",
+            :card => token
+            )
+          flash[:notice] = "Thank you for ordering, Come back soon!"
+        rescue Stripe::CardError => e
+          flash[:danger] = e.message
+        end
 
 
-#this code is available on the stripe API page for charging accounts.
-# this line means that amount is equal to the records price, turned into cents and floored to an integer
-# the currency will be in euro
-# the card will be the form token
 
 
-
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to root_url, notice: "Thank's for your order with WaxDigger, Come back soon!"}
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        respond_to do |format|
+          if @order.save
+            format.html { redirect_to root_url}
+            format.json { render :show, status: :created, location: @order }
+          else
+            format.html { render :new }
+            format.json { render json: @order.errors, status: :unprocessable_entity }
+          end
+        end
       end
-    end
-  end
 
 
 
