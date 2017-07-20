@@ -41,25 +41,23 @@ end
     @order.seller_id = @seller.id
 
     #this first line tells stripe the secret key i added earlier from the stripe site and tells what acc to charge
-    #this first line tells stripe the secret key i added earlier from the stripe site and tells what acc to charge
+
         Stripe.api_key = ENV["STRIPE_API_KEY"]
     # looks in the submitted form data. then pulls out the token stipe has given us, and hides it in the token.
         token = params[:stripeToken]
 
-    #this code is available on the stripe API page for charging accounts
+    #this code is available on the stripe API page for charging accounts.
+    # i multiplied the selling price by 100 and use the .floor extension to keep the price in a integer
         begin
           charge = Stripe::Charge.create(
             :amount => (@record.Selling_Price * 100).floor,
             :currency => "eur",
             :card => token
             )
-          flash[:notice] = "Thank you for ordering, Come back soon!"
+          flash[:notice] = "Thank you for ordering with WaxDigger, Come back soon!"
         rescue Stripe::CardError => e
           flash[:danger] = e.message
         end
-
-
-
 
         respond_to do |format|
           if @order.save
