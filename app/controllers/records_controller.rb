@@ -37,6 +37,39 @@ class RecordsController < ApplicationController
 #the below code tells rails that the new record user id is equal to the current user. it adds association
     @record.user_id = current_user.id
 
+#the below code pulls in the stripe aip key
+    Stripe.api_key = ENV["STRIPE_API_KEY"]
+# looks in the submitted form data. then pulls out the token stipe has given us, and hides it in the token.
+    token = params[:stripeToken]
+
+
+
+    #the below code is taken from the stripe documentation for creating a recipient. The name is the current user_signed_in
+    #the type is an individual not a corporation and the bank acc is the generated token.
+    require "stripe"
+
+    Stripe.api_key = "sk_test_is7jrOAYtaRmMAAwopVfVpd0"
+    Stripe.api_version = "2017-01-27"
+
+     recipient = Stripe::Recipient.create(
+     :name => current_user.name,
+      :type => "individual",
+      :bank_account => token
+      )
+
+      #Stripe.api_key = "sk_test_is7jrOAYtaRmMAAwopVfVpd0"
+
+    #  acct = Stripe::Account.create({
+      #    :name => current_user.name,
+      #    :country => "US",
+      #    :type => "custom"
+      #})
+
+
+#the below code tells rails to fill in the recipent for the current user with the recipent id we got from stripe
+      current_user.recipient = recipient.id
+      current_user.save
+
     respond_to do |format|
       if check_max_price && @record.save
         format.html { redirect_to @record, notice: 'Record was successfully created.' }
