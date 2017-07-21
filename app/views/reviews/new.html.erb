@@ -1,5 +1,5 @@
 <h1>New Review</h1>
 
 <%= render 'form', review: @review %>
-
-<%= link_to 'Back', '#' %>
+<%#the below code uses the record tag to bring you back to the currently reviewd record %>
+<%= link_to 'Back', record_path(@record) %>
