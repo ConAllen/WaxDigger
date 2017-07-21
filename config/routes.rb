@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 #the below code tells rails to only alow to create and make new orders
   resources :records do
       resources :orders, only: [:new, :create]
+      resources :reviews, except:[:show, :index]
+
     end
 
   get 'pages/about'

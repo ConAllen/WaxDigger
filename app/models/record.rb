@@ -9,6 +9,9 @@ class Record < ActiveRecord::Base
 #validates image are present
   validates :image, attachment_presence: true
 
+#a record has many reviews
+  has_many :reviews
+
 #the below code links a record to a user.
   belongs_to :user
   # each record can have many orders
