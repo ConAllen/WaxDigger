@@ -10,4 +10,6 @@ class User < ApplicationRecord
   has_many :records, dependent: :destroy
 
   has_many :sales, class_name:"Order", foreign_key: "buyer_id"
+
+  has_many :reviews, dependent: :destroy
 end

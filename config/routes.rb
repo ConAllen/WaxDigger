@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews, except:[:show, :index]
   devise_for :users
 #this tells rails it needs to include the listing id number in the url in the order page
 #the below code tells rails to only alow to create and make new orders

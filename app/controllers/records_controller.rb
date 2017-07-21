@@ -51,11 +51,11 @@ class RecordsController < ApplicationController
     Stripe.api_key = "sk_test_is7jrOAYtaRmMAAwopVfVpd0"
     Stripe.api_version = "2017-01-27"
 
-     recipient = Stripe::Recipient.create(
-     :name => current_user.name,
-      :type => "individual",
-      :bank_account => token
-      )
+  #   recipient = Stripe::Recipient.create(
+  #   :name => current_user.name,
+  #    :type => "individual",
+  #    :bank_account => token
+  #    )
 
       #Stripe.api_key = "sk_test_is7jrOAYtaRmMAAwopVfVpd0"
 
@@ -67,8 +67,8 @@ class RecordsController < ApplicationController
 
 
 #the below code tells rails to fill in the recipent for the current user with the recipent id we got from stripe
-      current_user.recipient = recipient.id
-      current_user.save
+    #  current_user.recipient = recipient.id
+  #    current_user.save
 
     respond_to do |format|
       if check_max_price && @record.save
