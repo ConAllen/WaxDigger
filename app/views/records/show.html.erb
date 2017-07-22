@@ -29,12 +29,28 @@ simular to the index page. This time i just used two colums -->
     <strong>Selling price:</strong>
       <%= @record.Selling_Price %><br><br>
       <br>
+      <h1> Reviews section </h1>
+      <br>
+      <br>
+
+              <% @reviews.each do |review| %>
+          <div class="star-rating"></div>
+              <%= review.comment %> <br><br>
+      <%end%>
+
+      </table>
       <%= link_to "Buy it now", new_record_order_path(@record), class:"btn btn-primary", data: {no_turbolink: true}%>
       <%= link_to "write a review", new_record_review_path(@record), class:"btn btn-primary"%>
 </div>
 </div>
+
 <%# like the index page i added user permissions so only the signed in user can edit a listing%>
 <% if current_user == @record.user %>
   <%= link_to 'Edit', edit_record_path(@record),class: "btn btn-info" %> |
   <% end %>
 <%= link_to 'Back', records_path, class: "btn btn-warning" %> <br><br>
+
+<script>
+$('.star-rating').raty({
+  path: 'http://app/assets/images/stars'});
+</script>

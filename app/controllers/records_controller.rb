@@ -18,7 +18,9 @@ class RecordsController < ApplicationController
 
   # GET /records/1
   # GET /records/1.json
+#this code will state that on each show page. it will display only reviews for that record.
   def show
+    @reviews = Review.where(record_id: @record.id)
   end
 
   # GET /records/new
