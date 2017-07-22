@@ -4,7 +4,9 @@ simular to the index page. This time i just used two colums -->
 <div class="row">
   <div class="col-md-6">
   <div class= "thumbnail">
-    <%= image_tag @record.image.url%>
+    <%= image_tag @record.image.url%> <br>
+    <div class="star-rating" data-score= <%= @avg_rating %> ></div>
+   <p><%= "#{@reviews.length} reviews" %></p>
   </div>
   </div>
   <div class="col-md-6">
@@ -28,29 +30,54 @@ simular to the index page. This time i just used two colums -->
       <%= @record.Original_Price %><br><br>
     <strong>Selling price:</strong>
       <%= @record.Selling_Price %><br><br>
-      <br>
-      <h1> Reviews section </h1>
-      <br>
-      <br>
 
-              <% @reviews.each do |review| %>
-          <div class="star-rating"></div>
-              <%= review.comment %> <br><br>
-      <%end%>
+        <div class="col-md-9">
+          <% if @reviews.blank? %>
+            <h3>No reviews yet. Be the first to write one!</h3>
+          <% else %>
 
-      </table>
-      <%= link_to "Buy it now", new_record_order_path(@record), class:"btn btn-primary", data: {no_turbolink: true}%>
-      <%= link_to "write a review", new_record_review_path(@record), class:"btn btn-primary"%>
-</div>
-</div>
+            <table class="table"><h2>Reviews Section</h2>
+              <thead>
+                <tr>
+                  <th class="col-md-3"></th>
+                  <th class="col-md-9"></th>
+                </tr>
+              </thead>
 
+              <tbody>
+                <% @reviews.each do |review| %>
+                  <tr>
+                    <td>
+                      <h4>
+
+                      </h4>
+                      <p><%= review.created_at.strftime("%-m/%-d/%y") %></p>
+                    </td>
+
+                    <td>
+                      <div class="star-rating" data-score= <%= review.rating %> ></div>
+                      <p><%= h(review.comment).gsub(/\n/, '<br/>').html_safe %></p>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+      </div>
 <%# like the index page i added user permissions so only the signed in user can edit a listing%>
 <% if current_user == @record.user %>
   <%= link_to 'Edit', edit_record_path(@record),class: "btn btn-info" %> |
   <% end %>
-<%= link_to 'Back', records_path, class: "btn btn-warning" %> <br><br>
+<%= link_to 'Back', records_path, class: "btn btn-warning" %> |
+<%= link_to "review", new_record_review_path(@record), class:"btn btn-success"%> <br>
 
 <script>
-$('.star-rating').raty({
-  path: 'http://app/assets/images/stars'});
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
 </script>
