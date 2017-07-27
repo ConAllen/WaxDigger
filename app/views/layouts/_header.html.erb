@@ -40,6 +40,10 @@ to show what link a user will see if they are signed in or signed out%>
                           <li><%= link_to "Manage Listing's",seller_path %></li>
                           <li><%= link_to "Edit Profile",edit_user_registration_path %></li>
                           <li><%= link_to "Sign Out",destroy_user_session_path, method: :delete %></li>
+                          <%#the below code allows you to only be allowed to create a listing if you are signed into the application %>
+
+                        <li><%= link_to 'New Record', new_record_path,data: {no_turbolink: true} %><li> <br>
+
                       </li>
                     </ul>
 
