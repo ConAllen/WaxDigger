@@ -1,7 +1,7 @@
 <%# the below is my seller page. I have created a HTML table to display the content
     which will make it different to the home page.%>
 
-
+<h1>Manage listings page</h1>
   <table class="table table-bordered table-hover table-striped">
   <tr>
     <th>Image</th>
@@ -17,7 +17,7 @@
     <tr>
       <td><%= image_tag record.image.url(:thumb)%></td>
       <td><%= record.Title %></td>
-      <td><%= record.Label %></td><br>
+      <td><%= record.Label %></td>
       <td><%= record.Format %></td>
       <td><%= record.Condition %></td>
       <td><%= record.Selling_Price %> </td>

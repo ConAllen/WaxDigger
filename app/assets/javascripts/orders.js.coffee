@@ -1,4 +1,4 @@
-#the below code is for stripe validation. Once i enter vallid stripe test creditcard details "4242424242424242" which are available
+#the below code is the coffe script code for stripe validation. Once i enter vallid stripe test creditcard details "4242424242424242" which are available
 #on their site. and enter it into buy a product. The code below varifys it and stripe sends me a token number.
 # Once you see the token alert which appears after you enter a valid test number. you get an alert with a stripe token
 jQuery ->
@@ -16,6 +16,6 @@ payment =
     if status == 200
       $('#new_order').append($('<input type="hidden" name="stripeToken" />').val(response.id))
       $('#new_order')[0].submit()
-      alert(response.id)
     else
-      alert(response.error.message)
+      $('#stripe_error').text(response.error.message).show()
+      $('input[type=submit]').attr('disabled', false)
