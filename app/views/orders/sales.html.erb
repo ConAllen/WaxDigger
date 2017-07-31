@@ -1,5 +1,6 @@
 <%# the below is my sales page. I have created a HTML table to display the content
     which will make it different to the home page.%>
+
 <h1> Your sale history page </h1>
   <table class="table table-bordered table-hover table-striped">
   <tr>
@@ -18,7 +19,7 @@
       <td><%= order.record.Title %></td>
       <td><%= order.record.Label %></td>
       <td><%= order.record.Condition %></td>
-      <td><%= order.buyer.name %></td>
+      <td><%= order.try(&:buyer).try(&:name) %></td>  
       <td><%= order.record.Selling_Price %> </td>
       <%#THE BELOW CODE IS FOR RUBY DATE. FOUND ON rubydoc%>
        <td><%= order.created_at.strftime("%-d %B, %Y") %></td>
