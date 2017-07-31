@@ -10,6 +10,8 @@
 
 
 </div>
+<h1> Recently added </h1>
+<br>
 <div class="row">
   <%# the ruby code below loops through the record listings properties. and displays it in a
   bootstrap thumb nail / grid system. there should be 4 records accross using "col-md-3"%>
@@ -34,10 +36,17 @@ record listing page%>
 
     <% end %>
 </div>
-
-
-  <%#the below code allows you to only be allowed to create a listing if you are signed into the application %>
+<%#the below code allows you to only be allowed to create a listing if you are signed into the application %>
 <% if (user_signed_in?)%>
 
 <%= link_to 'New Record', new_record_path, class: "btn btn-success",data: {no_turbolink: true} %> <br>
 <% end %>
+<br>
+<br>
+<br>
+<br>
+<div class="footer">
+
+
+
+</div>

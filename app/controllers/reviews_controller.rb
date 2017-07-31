@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
 
   # POST /reviews
   # POST /reviews.json
+#the below is the create model for the reviews section.
   def create
     @review = Review.new(review_params)
 

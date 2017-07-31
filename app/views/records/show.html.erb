@@ -32,6 +32,7 @@ simular to the index page. This time i just used two colums -->
       <%= @record.Selling_Price %><br><br>
       <%= link_to "Buy Now", new_record_order_path(@record), class:"btn btn-primary"%> <br>
 
+<%#the below table is set up for the reviews section%>
 
         <div class="col-md-9">
           <% if @reviews.blank? %>
@@ -45,7 +46,6 @@ simular to the index page. This time i just used two colums -->
                   <th class="col-md-9"></th>
                 </tr>
               </thead>
-
               <tbody>
                 <% @reviews.each do |review| %>
                   <tr>
@@ -74,6 +74,8 @@ simular to the index page. This time i just used two colums -->
 <%= link_to 'Back', records_path, class: "btn btn-warning" %> |
 <%= link_to "review", new_record_review_path(@record), class:"btn btn-success"%> <br>
 
+
+<%#the below code is from teh star raty plug in. it displays the review numbers as stars%>
 <script>
   $('.star-rating').raty({
     path: '/assets/',
